@@ -33,15 +33,17 @@ const TextureSelector = () => {
   }, [dirt, grass, glass, oakLog, oakPlanks, setTexture])
 
   return (
-    <div className='fixed bottom-centered texture-selector'>
-      {Object.keys(images).map(key => (
-        <img
-          key={key}
-          src={images[key]}
-          alt={key}
-          className={key === activeTexture ? 'active' : null}
-        />
-      ))}
+    <div className='fixed centered-bottom texture-selector'>
+      {Object.keys(images).map((key, idx) => {
+        const className = ['select']
+        if (key === activeTexture) className.push('active')
+        return (
+          <div className={className.join(' ')} key={key}>
+            <img src={images[key]} alt={key} />
+            <span>{idx + 1}</span>
+          </div>
+        )
+      })}
     </div>
   )
 }

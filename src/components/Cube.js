@@ -1,9 +1,11 @@
 import { useBox } from '@react-three/cannon'
+import { useState } from 'react'
 
 import useStore from '../hooks/useStore'
 import * as textures from '../textures'
 
 const Cube = ({ id, position, texture }) => {
+  const [isHovered, setIsHovered] = useState(false)
   const [ref] = useBox(() => ({
     type: 'Static',
     position,
@@ -15,11 +17,8 @@ const Cube = ({ id, position, texture }) => {
 
   const onClick = e => {
     e.stopPropagation()
-    // console.log('FI:', e.faceIndex)
     const clickedFace = Math.floor(e.faceIndex / 2)
-    // console.log(clickedFace)
-    const { x, y, z } = ref.current.position
-    // console.log(x, y, z)
+    let { x, y, z } = ref.current.position
     if (e.altKey) {
       return removeCube(id)
     }
@@ -32,10 +31,31 @@ const Cube = ({ id, position, texture }) => {
     else if (clickedFace === 5) return addCube(x, y, z - 1)
   }
 
+  const onPointerMove = e => {
+    e.stopPropagation()
+    setIsHovered(true)
+  }
+
+  const onPointerOut = e => {
+    e.stopPropagation()
+    setIsHovered(false)
+  }
+
   return (
-    <mesh ref={ref} onClick={onClick}>
+    <mesh
+      ref={ref}
+      onClick={onClick}
+      onPointerMove={onPointerMove}
+      onPointerOut={onPointerOut}
+    >
       <boxGeometry attach='geometry' />
-      <meshStandardMaterial attach='material' map={activeTexture} />
+      <meshStandardMaterial
+        attach='material'
+        map={activeTexture}
+        color={isHovered ? 'lightgray' : 'white'}
+        transparent={true}
+        opacity={texture === 'glass' ? 0.9 : 1}
+      />
     </mesh>
   )
 }

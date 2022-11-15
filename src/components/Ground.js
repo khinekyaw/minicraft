@@ -7,7 +7,7 @@ import { groundTexture } from '../textures'
 const Ground = () => {
   const [ref] = usePlane(() => ({
     rotation: [-Math.PI / 2, 0, 0],
-    position: [0, -0.5, 0],
+    position: [0, -0.499, 0],
   }))
   const addCube = useStore(state => state.addCube)
 
@@ -17,6 +17,7 @@ const Ground = () => {
 
   const onClick = e => {
     e.stopPropagation()
+    if (e.altKey) return
     const [x, y, z] = Object.values(e.point).map(Math.round)
     addCube(x, y, z)
   }

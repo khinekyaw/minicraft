@@ -5,8 +5,8 @@ import { useFrame, useThree } from '@react-three/fiber'
 
 import useKeyboard from '../hooks/useKeyboard'
 
-const JUMP_FORCE = 3.4
-const SPEED = 3
+const JUMP_FORCE = 4
+const SPEED = 4
 
 const Player = () => {
   const { moveForward, moveBackward, moveLeft, moveRight, jump } = useKeyboard()
@@ -16,7 +16,7 @@ const Player = () => {
     mass: 1,
     type: 'Dynamic',
     position: [0, 1, 0],
-    args: [0.9],
+    args: [0.35],
   }))
 
   const pos = useRef([0, 0, 0])
@@ -30,7 +30,9 @@ const Player = () => {
   }, [api.velocity])
 
   useFrame(() => {
-    camera.position.copy(new Vector3(...pos.current))
+    camera.position.copy(
+      new Vector3(pos.current[0], pos.current[1] + 1, pos.current[2])
+    )
 
     const direction = new Vector3()
 
@@ -54,7 +56,7 @@ const Player = () => {
 
     api.velocity.set(direction.x, vel.current[1], direction.z)
 
-    if (jump && Math.abs(vel.current[1]) < 0.05) {
+    if (jump && Math.abs(vel.current[1]) < 0.005) {
       vel.current[1] = JUMP_FORCE
       api.velocity.set(...vel.current)
     }

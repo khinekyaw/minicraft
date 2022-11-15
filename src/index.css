@@ -13,6 +13,21 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
+button {
+  outline: none;
+  border: 2px solid transparent;
+  background-color: rgba(65, 77, 89, 0.5);
+  color: white;
+  padding: 6px;
+  border-bottom-left-radius: 5px;
+  border-bottom-right-radius: 5px;
+}
+
+button:hover {
+  border-color: rgb(39, 42, 45);
+  
+}
+
 .fixed {
   position: fixed;
 }
@@ -23,8 +38,14 @@ body {
   transform: translate(-50%, -50%);
 }
 
-.bottom-centered {
+.centered-bottom {
   bottom: 0;
+  left: 50vw;
+  transform: translateX(-50%);
+}
+
+.centered-top {
+  top: 0;
   left: 50vw;
   transform: translateX(-50%);
 }
@@ -41,7 +62,8 @@ body {
   border-top-right-radius: 5px;
 }
 
-.texture-selector img {
+.texture-selector .select {
+  position: relative;
   width: 50px;
   height: 50px;
   image-rendering: pixelated;
@@ -51,11 +73,35 @@ body {
   opacity: 0.5;
 }
 
-.texture-selector img.active {
+.texture-selector .select span {
+  font-size: 14px;
+  position: absolute;
+  color: white;
+  bottom: 0;
+  right: 5px;
+  text-shadow: 0 0 2px black;
+}
+
+.texture-selector .select img {
+  width: 100%;
+  height: 100%;
+}
+
+.texture-selector .select.active {
   border: 3px solid rgb(39, 42, 45);
   opacity: 1;
 }
 
-.texture-selector img:last-child {
+.texture-selector .select:last-child {
   margin-right: 0;
+}
+
+.menu {
+  display: flex;
+}
+
+.helper {
+  top: 6px;
+  left: 6px;
+  opacity: 0.7;
 }

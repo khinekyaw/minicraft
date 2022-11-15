@@ -35,6 +35,7 @@ const useStore = create(set => ({
   saveWorld: () => {
     set(prev => {
       setLocalStorage(CUBES_KEY, prev.cubes)
+      return prev
     })
   },
   loadWorld: () => {},

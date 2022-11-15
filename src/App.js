@@ -9,6 +9,7 @@ import Player from './components/Player'
 import FPV from './components/FPV'
 import Cubes from './components/Cubes'
 import Menu from './components/Menu'
+import Helper from './components/Helper'
 
 function App() {
   return (
@@ -18,7 +19,7 @@ function App() {
         {/* <directionalLight position={[0, 5, 3]} intensity={0.1} /> */}
         <ambientLight intensity={0.5} />
         <FPV />
-        <Physics>
+        <Physics gravity={[0, -10, 0]}>
           <Player />
           <Cubes />
           <Ground />
@@ -27,6 +28,7 @@ function App() {
       <div className='fixed centered cursor'>+</div>
       <TextureSelector />
       <Menu />
+      <Helper />
     </Fragment>
   )
 }
