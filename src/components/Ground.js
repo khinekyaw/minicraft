@@ -23,7 +23,7 @@ const Ground = () => {
   }
 
   return (
-    <mesh ref={ref} onClick={onClick}>
+    <mesh ref={ref} onClick={onClick} receiveShadow>
       <planeGeometry attach={'geometry'} args={[100, 100]} />
       <meshStandardMaterial attach={'material'} map={groundTexture} />
     </mesh>

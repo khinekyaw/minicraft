@@ -47,6 +47,8 @@ const Cube = ({ id, position, texture }) => {
       onClick={onClick}
       onPointerMove={onPointerMove}
       onPointerOut={onPointerOut}
+      castShadow
+      receiveShadow
     >
       <boxGeometry attach='geometry' />
       <meshStandardMaterial

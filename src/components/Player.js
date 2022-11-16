@@ -5,7 +5,7 @@ import { useFrame, useThree } from '@react-three/fiber'
 
 import useKeyboard from '../hooks/useKeyboard'
 
-const JUMP_FORCE = 4
+const JUMP_FORCE = 5
 const SPEED = 4
 
 const Player = () => {
